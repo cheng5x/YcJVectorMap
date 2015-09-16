@@ -1,0 +1,15 @@
+d:\my documents\visual studio 2010\Projects\YcJVectorMap\YcJVectorMap\bin\YcJVectorMap.dll
+d:\my documents\visual studio 2010\Projects\YcJVectorMap\YcJVectorMap\bin\YcJVectorMap.pdb
+d:\my documents\visual studio 2010\Projects\YcJVectorMap\YcJVectorMap\bin\EntityFramework.dll
+d:\my documents\visual studio 2010\Projects\YcJVectorMap\YcJVectorMap\bin\EntityFramework.xml
+d:\my documents\visual studio 2010\Projects\YcJVectorMap\YcJVectorMap\obj\Debug\YcJVectorMap.dll
+d:\my documents\visual studio 2010\Projects\YcJVectorMap\YcJVectorMap\obj\Debug\YcJVectorMap.pdb
+E:\研发部\IT_Public\研发框架\图表框架\YcJVectorMap\YcJVectorMap\bin\YcJVectorMap.dll
+E:\研发部\IT_Public\研发框架\图表框架\YcJVectorMap\YcJVectorMap\bin\YcJVectorMap.pdb
+E:\研发部\IT_Public\研发框架\图表框架\YcJVectorMap\YcJVectorMap\bin\EntityFramework.dll
+E:\研发部\IT_Public\研发框架\图表框架\YcJVectorMap\YcJVectorMap\bin\EntityFramework.xml
+E:\研发部\IT_Public\研发框架\图表框架\YcJVectorMap\YcJVectorMap\obj\Debug\YcJVectorMap.csprojResolveAssemblyReference.cache
+E:\研发部\IT_Public\研发框架\图表框架\YcJVectorMap\YcJVectorMap\obj\Debug\YcJVectorMap.dll
+E:\研发部\IT_Public\研发框架\图表框架\YcJVectorMap\YcJVectorMap\obj\Debug\YcJVectorMap.pdb
+E:\研发部\IT_Public\研发框架\图表框架\YcJVectorMap\YcJVectorMap\bin\YcJVectorMap.Model.dll
+E:\研发部\IT_Public\研发框架\图表框架\YcJVectorMap\YcJVectorMap\bin\YcJVectorMap.Model.pdb

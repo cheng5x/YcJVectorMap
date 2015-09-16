@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>网友宁宁分享带提示层的中国地图jquery插件</title>
+    <link href="jvectormap/jquery.vector-map.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="jvectormap/jquery-1.6.min.js" type="text/javascript"></script>
+    <script src="jvectormap/jquery.vector-map.js" type="text/javascript"></script>
+    <script src="jvectormap/china-zh.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            /*id为中国省份标识符，name为对应省份名称，两者固定。value为活动情况，
+　　url为活动列表页面地址，数据可后台动态生成，这两项有活动的地区填写，无则留空。*/
+            /*var dataStatus =
+            [{ id: 'HKG', name: '香港：', value: '6', url: '#' },
+            { id: 'HAI', name: '海南：', value: '0', url: '#' },
+            { id: 'YUN', name: '云南：', value: '0', url: '#' },
+            { id: 'BEJ', name: '北京：', value: '3', url: '#' },
+            { id: 'TAJ', name: '天津：', value: '0', url: '#' },
+            { id: 'XIN', name: '新疆：', value: '0', url: '#' },
+            { id: 'TIB', name: '西藏：', value: '0', url: '#' },
+            { id: 'QIH', name: '青海：', value: '0', url: '#' },
+            { id: 'GAN', name: '甘肃：', value: '0', url: '#' },
+            { id: 'NMG', name: '内蒙古：', value: '0', url: '#' },
+            { id: 'NXA', name: '宁夏：', value: '0', url: '#' },
+            { id: 'SHX', name: '山西：', value: '0', url: '#' },
+            { id: 'LIA', name: '辽宁：', value: '0', url: '#' },
+            { id: 'JIL', name: '吉林：', value: '0', url: '#' },
+            { id: 'HLJ', name: '黑龙江：', value: '0', url: '#' },
+            { id: 'HEB', name: '河北：', value: '0', url: '#' },
+            { id: 'SHD', name: '山东：', value: '0', url: '#' },
+            { id: 'HEN', name: '河南：', value: '0', url: '#' },
+            { id: 'SHA', name: '陕西：', value: '0', url: '#' },
+            { id: 'SCH', name: '四川：', value: '1', url: '#' },
+            { id: 'CHQ', name: '重庆：', value: '0', url: '#' },
+            { id: 'HUB', name: '湖北：', value: '1', url: '#' },
+            { id: 'ANH', name: '安徽：', value: '0', url: '#' },
+            { id: 'JSU', name: '江苏：', value: '0', url: '#' },
+            { id: 'SHH', name: '上海：', value: '0', url: '#' },
+            { id: 'ZHJ', name: '浙江：', value: '0', url: '#' },
+            { id: 'FUJ', name: '福建：', value: '0', url: '#' },
+            { id: 'TAI', name: '台湾：', value: '0', url: '#' },
+            { id: 'JXI', name: '江西：', value: '0', url: '#' },
+            { id: 'HUN', name: '湖南：', value: '5', url: '#' },
+            { id: 'GUI', name: '贵州：', value: '0', url: '#' },
+            { id: 'GXI', name: '广西：', value: '0', url: '#' },
+            { id: 'GUD', name: '广东：', value: '9', url: '#'}];*/
+            var dataStatus = @Html.Raw(ViewData["mapDataJson"].ToString());
+$('#map').vectorMap({
+                map: 'china_zh',
+                backgroundColor: false,
+                color: "#BBBBBB",
+                hoverColor: false,
+                //显示各地区名称和活动
+                onLabelShow: function (value, label, code) {
+                    $.each(dataStatus, function (i, items) {
+                        if (code == items.id) {
+                            label.html(items.name + items.value);
+                        }
+                    });
+                },
+                //鼠标移入省份区域，改变鼠标状态
+                onRegionOver: function (value, code) {
+                    $.each(dataStatus, function (i, items) {
+                        if ((code == items.id) && (items.value != '')) {
+                            $('#map').css({ cursor: 'pointer' });
+                            var josnStr = "{" + items.id + ":'#00FF00'}";
+                            $('#map').vectorMap('set', 'colors', eval('(' + josnStr + ')'));
+                        }
+                    });
+                },
+                //鼠标移出省份区域，改回鼠标状态
+                onRegionOut: function (value, code) {
+                    $.each(dataStatus, function (i, items) {
+                        if ((code == items.id) && (items.value != '')) {
+                            $('#map').css({ cursor: 'auto' });
+
+                            if (items.value != '0') {
+                                var josnStr = "{" + items.id + ":'#001F76'}";
+                                $('#map').vectorMap('set', 'colors', eval('(' + josnStr + ')'));
+                                $('#jvectormap1_'+items.id).attr("fill-opacity",(items.opacity));
+                            }
+                            else {
+                                var josnStr = "{" + items.id + ":'#BBBBBB'}";
+                                $('#map').vectorMap('set', 'colors', eval('(' + josnStr + ')'));
+                            }
+                        }
+                    });
+                },
+                //点击有活动的省份区域，打开对应活动列表页面
+                onRegionClick: function (value, code) {
+                    $.each(dataStatus, function (i, items) {
+                        if ((code == items.id) && (items.value != '')) {
+                          window.location.href = items.url;
+                        }
+                    });
+                }
+            });
+            //改变有活动省份区域的颜色
+            $.each(dataStatus, function (i, items) {
+                if (items.value != '0') {
+                    var josnStr = "{" + items.id + ":'#001F76'}";
+                    $('#map').vectorMap('set', 'colors', eval('(' + josnStr + ')'));
+                    $('#jvectormap1_'+items.id).attr("fill-opacity",(items.opacity));
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="map" style="margin-left: 45px; padding-top: 10px; padding-left: 10px; background: white;
+        width: 650px; height: 530px;">
+    </div>
+    <div style="width: 420px; height: 15px; margin: 0 auto; filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#BBBBBB',endColorStr='#001F76',gradientType='1');
+        background: -moz-linear-gradient(left, #BBBBBB, #001F76); background: -o-linear-gradient(left,#BBBBBB, #001F76);
+        background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(#BBBBBB), to(#001F76));
+        position: relative;">
+        <div style="position: absolute; top: -18px;">
+            0
+        </div>
+        <div style="position: absolute; top: -18px; right: 0;">
+            @ViewData["maxAreaCount"]
+        </div>
+    </div>
+</body>
+</html>
